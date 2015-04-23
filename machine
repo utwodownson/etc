@@ -1,0 +1,4 @@
+export dev="yangshuang@cq01-rdqa-dev099.cq01.baidu.com:/home/users/yangshuang"
+export pool="yangshuang@cp01-rdqa-pool388.cp01.baidu.com:/home/users/yangshuang/"
+export hz01="yangshuang@hz01-map-ensl-dataop11.hz01.baidu.com:/home/yangshuang/"
+export all="map@cq02-map-ensl-dataop00.cq02.baidu.com:/home/disk5/yangshuang"

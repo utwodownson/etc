@@ -1,0 +1,22 @@
+#!/bin/sh
+
+\rm -rf ~/.vimrc
+\rm -rf ~/.vimrc.bundles
+\rm -rf ~/.vimrc.local
+\rm -rf ~/.bashrc
+\rm -rf ~/.tmux.conf
+\rm -rf ~/.machine
+\rm -rf ~/.change.sh
+
+ln -s ~/etc/vimrc ~/.vimrc
+ln -s ~/etc/vimrc.bundles ~/.vimrc.bundles
+ln -s ~/etc/vimrc.local ~/.vimrc.local
+ln -s ~/etc/bashrc ~/.bashrc
+ln -s ~/etc/tmux.conf ~/.tmux.conf
+ln -s ~/etc/machine ~/.machine
+ln -s ~/etc/change.sh ~/.change.sh
+
+mkdir -p ~/.vim/backup
+mkdir -p ~/.trash
+
+#source ${HOME}/.bashrc
