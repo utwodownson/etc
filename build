@@ -1,5 +1,7 @@
 #!/bin/sh
 
+if [ 
+
 \rm -rf ~/.vimrc
 \rm -rf ~/.vimrc.bundles
 \rm -rf ~/.vimrc.local
@@ -18,5 +20,3 @@ ln -s ~/etc/change.sh ~/.change.sh
 
 mkdir -p ~/.vim/backup
 mkdir -p ~/.trash
-
-#source ${HOME}/.bashrc

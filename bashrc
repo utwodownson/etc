@@ -36,7 +36,7 @@ fi
 
 make_ps() {
     add=$(hostname|awk -F'-' '{print $1}')
-    PS1="\[\033[01;31m\]\u@\[\033[01;33m\]\h.$add \[\033[0;31m\]\W\[\033[37;36m\]\$ \[\033[1;37m\]"
+    PS1="\[\033[01;31m\]\u@\[\033[01;33m\]Ubuntu \[\033[0;31m\]\W\[\033[37;36m\]\$ \[\033[1;37m\]"
 }
 
 trash() {
@@ -67,4 +67,9 @@ alias astyle="astyle -j -W3 -k3 -f --delete-empty-lines --unpad-paren --pad-head
 domain=$(hostname | awk -F '.' '{print $(NF - 1)}')
 if [ ${domain} = "baidu" ]; then
     source ${HOME}/etc/bashrc.baidu
+fi
+
+system=$(uname)
+if [ ${system} = "Darwin" ]; then
+    source ${HOME}/etc/bashrc.mac
 fi
