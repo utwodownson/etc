@@ -1,7 +1,5 @@
 #!/bin/sh
 
-if [ 
-
 \rm -rf ~/.vimrc
 \rm -rf ~/.vimrc.bundles
 \rm -rf ~/.vimrc.local
