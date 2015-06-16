@@ -34,7 +34,7 @@ set wildignore=log/**,node_modules/**,target/**,tmp/**,*.rbc
 set wildmenu                                                 " show a navigable menu for tab completion
 set wildmode=longest,list,full
 set tabstop=4
-set pastetoggle=<F9>
+set pastetoggle=<F9>                                         " paste
 
 autocmd FileType c setlocal expandtab shiftwidth=4 tabstop=4
 autocmd FileType cpp setlocal expandtab shiftwidth=4 tabstop=4
@@ -71,7 +71,7 @@ nnoremap <leader>] :TagbarToggle<CR>
 nnoremap <leader><space> :call whitespace#strip_trailing()<CR>
 nnoremap <leader>g :GitGutterToggle<CR>
 nnoremap <leader>c <Plug>Kwbd
-noremap <silent> <leader>V :source ~/.vimrc<CR>:filetype detect<CR>:exe ":echo 'vimrc reloaded'"<CR>
+nnoremap <silent> <leader>V :source ~/.vimrc<CR>:filetype detect<CR>:exe ":echo 'vimrc reloaded'"<CR>
 
 " in case you forgot to sudo
 cnoremap w!! %!sudo tee > /dev/null %
@@ -84,8 +84,8 @@ let g:gitgutter_enabled = 0
 let g:solarized_termcolors=256
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_theme="serene"
-let g:Powerline_symbols = 'fancy'
-let g:ackprg = 'ag --nogroup --column' " ZOMG the_silver_searcher is so much faster than ack
+let g:Powerline_symbols='fancy'
+let g:ackprg='ag --nogroup --column' " ZOMG the_silver_searcher is so much faster than ack
 set t_Co=256
 
 " set scheme
@@ -107,14 +107,14 @@ endif
 vnoremap p "_dP
 
 " Fix Cursor in TMUX
-if exists('$TMUX')
-  let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
-  let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
-else
-  let &t_SI = "\<Esc>]50;CursorShape=1\x7"
-  let &t_EI = "\<Esc>]50;CursorShape=0\x7"
-endif
-
+"if exists('$TMUX')
+"  let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
+"  let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
+"else
+"  let &t_SI = "\<Esc>]50;CursorShape=1\x7"
+"  let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+"endif
+"
 " Go crazy!
 if filereadable(expand("~/.vimrc.local"))
     " In your .vimrc.local, you might like:
