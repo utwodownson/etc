@@ -3,7 +3,7 @@
 alias go="${HOME}/.change.sh "
 alias hfs="${HADOOP_HOME}/bin/hadoop fs -conf ${HADOOP_HOME}/conf/hadoop-site-dataop.xml "
 alias hjob="${HADOOP_HOME}/bin/hadoop job -conf ${HADOOP_HOME}/conf/hadoop-site-dataop.xml "
-alias cddm="cd /home/users/yangshuang/lib/app/search/lbs-dataop"
+alias cddm="cd /home/users/yangshuang/lib/app/search/linkmining"
 
 export SHLIB_HOME="${HOME}/charles/lib/shlib"
 export HADOOP_HOME="${HOME}/hadoop-client/hadoop"

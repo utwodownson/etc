@@ -36,7 +36,8 @@ fi
 
 make_ps() {
     add=$(hostname|awk -F'-' '{print $1}')
-    PS1="\[\033[01;31m\]\u@\[\033[01;33m\]\h.$add \[\033[0;31m\]\W\[\033[37;36m\]\$ \[\033[1;37m\]"
+    #PS1="\[\033[01;31m\]\u@\[\033[01;33m\]\h.$add \[\033[0;31m\]\W\[\033[37;36m\]\$ \[\033[1;37m\]"
+    PS1="\[\033[01;31m\]\u\[\033[01;31m\]@\[\033[01;33m\]\h.$add \[\033[0;31m\]\W\[\033[37;36m\]\$ \[\033[1;37m\]"
 }
 
 trash() {
@@ -73,3 +74,5 @@ system=$(uname)
 if [ ${system} = "Darwin" ]; then
     source ${HOME}/etc/bashrc.mac
 fi
+
+#source /home/users/yangshuang/.jumbo/lib/python2.7/site-packages/powerline/bindings/bash/powerline.sh
