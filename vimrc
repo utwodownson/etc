@@ -8,11 +8,12 @@ syntax on
 filetype on " without this vim emits a zero exit status, later, because of :ft off
 filetype off
 set rtp+=~/.vim/bundle/Vundle.vim/
-call vundle#begin()
+" call vundle#begin()
+call vundle#rc()
 if filereadable(expand("~/.vimrc.bundles"))
     source ~/.vimrc.bundles
 endif
-call vundle#end() " ensure ftdetect et al work by including this after the Vundle stuff
+" call vundle#end() " ensure ftdetect et al work by including this after the Vundle stuff
 filetype plugin indent on
 
 " setting
@@ -27,7 +28,7 @@ set laststatus=2                                             " always show statu
 set list                                                     " show trailing whitespace
 set listchars=tab:▸\ ,trail:▫
 set number                                                   " show line numbers
-set backupdir=~/.vim/backup
+set backupdir=${HOME}/.vim/backup
 set tags=./tags
 set ruler                                                    " show where you are
 set wildignore=log/**,node_modules/**,target/**,tmp/**,*.rbc
