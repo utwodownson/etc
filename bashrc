@@ -1,3 +1,5 @@
+#!/bin/sh
+
 domain=$(hostname | awk -F '.' '{print $(NF - 1)}')
 if [ ${domain} == "baidu" ]; then
     source ${HOME}/etc/bashrc.baidu
@@ -34,8 +36,8 @@ fi
 
 
 make_ps() {
-    add=$(hostname | awk -F '.' '{print $1}' | awk -F '-' '{print $3}')
-    PS1="\[\033[01;31m\]\u\[\033[01;31m\]@\[\033[01;33m\]$add \[\033[0;31m\]\W\[\033[37;36m\]\$ \[\033[1;37m\]"
+    add=$(hostname | awk -F '-' '{print $1}')
+    PS1="\[\033[01;31m\]\u\[\033[01;31m\]@\[\033[01;33m\]\h.$add \[\033[0;31m\]\W\[\033[37;36m\]\$ \[\033[1;37m\]"
 }
 
 trash() {
@@ -46,7 +48,10 @@ hup() {
     nohup $@ >> ../log/nohup 2>&1 &
 }
 
-make_ps
+show_name() {
+    echo -n $(users | awk '{print $1}')"@"$(uname -a | awk '{print $2}')":"$(pwd)
+    echo
+}
 
 
 alias rm='trash'
@@ -60,5 +65,9 @@ alias ls='ls --color=auto'
 alias ll='ls -l'
 alias la='ls -A'
 alias vim='vi'
-alias tree="tree -L 1"
-alias astyle="astyle -j -W3 -k3 -f --delete-empty-lines --unpad-paren --pad-header --pad-oper -Y --indent=spaces=4 -A8 -S"
+alias tree='tree -L 1'
+alias astyle='astyle -j -W3 -k3 -f --delete-empty-lines --unpad-paren --pad-header --pad-oper -Y --indent=spaces=4 -A8 -S'
+alias name='show_name'
+
+
+make_ps
