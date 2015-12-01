@@ -1,6 +1,6 @@
 # bashrc for baidu machine
 
-alias go="${HOME}/.change.sh "
+alias go="${HOME}/.go "
 alias hfs="${HADOOP_HOME}/bin/hadoop fs -conf ${HADOOP_HOME}/conf/hadoop-site-dataop.xml "
 alias hjob="${HADOOP_HOME}/bin/hadoop job -conf ${HADOOP_HOME}/conf/hadoop-site-dataop.xml "
 alias cddm="cd /home/users/yangshuang/lib/app/search/linkmining"
