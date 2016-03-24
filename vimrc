@@ -8,7 +8,6 @@ syntax on
 filetype on " without this vim emits a zero exit status, later, because of :ft off
 filetype off
 set rtp+=~/.vim/bundle/Vundle.vim/
-" call vundle#begin()
 call vundle#rc()
 if filereadable(expand("~/.vimrc.bundles"))
     source ~/.vimrc.bundles
@@ -29,7 +28,7 @@ set list                                                     " show trailing whi
 set listchars=tab:▸\ ,trail:▫
 set number                                                   " show line numbers
 set backupdir=${HOME}/.vim/backup
-set tags=./tags
+set tags=tags
 set ruler                                                    " show where you are
 set wildignore=log/**,node_modules/**,target/**,tmp/**,*.rbc
 set wildmenu                                                 " show a navigable menu for tab completion
@@ -77,12 +76,29 @@ nnoremap <silent> <leader>V :source ~/.vimrc<CR>:filetype detect<CR>:exe ":echo 
 " in case you forgot to sudo
 cnoremap w!! %!sudo tee > /dev/null %
 
+" NERD tree
+let NERDChristmasTree=0
+let NERDTreeChDirMode=2
+let NERDTreeWinSize=35
+let NERDTreeIgnore=['\~$', '\.pyc$', '\.swp$', '\.o']
+let NERDTreeShowBookmarks=1
+let NERDTreeWinPos="left"
+" Automatically open a NERDTree if no files where specified
+autocmd vimenter * if !argc() | NERDTree | endif
+" Close vim if the only window left open is a NERDTree
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+
+" Tagbar
+let g:tagbar_width=35
+let g:tagbar_autofocus=1
+" let g:tagbar_left=1
+let g:tagbar_vertical=20
+
 " plugin settings
 let g:ctrlp_match_window = 'order:ttb,max:20'
 let g:NERDSpaceDelims=1
 let g:CommandTMaxHeight=20
 let g:gitgutter_enabled = 0
-let g:solarized_termcolors=256
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_theme="serene"
 let g:Powerline_symbols='fancy'
@@ -91,8 +107,16 @@ set t_Co=256
 
 " set scheme
 set background=dark
-" set background=light
+let g:solarized_termtrans = 0
+let g:solarized_degrade = 1
+let g:solarized_bold = 0
+"let g:solarized_underline = 1
+let g:solarized_italic = 1
+let g:solarized_contrast = "high"
+let g:solarized_visibility= "high"
 colorscheme solarized
+set t_Co=256                        " force vim to use 256 colors
+let g:solarized_termcolors=256      " use solarized 256 fallback
 
 " Use The Silver Searcher https://github.com/ggreer/the_silver_searcher
 if executable('ag')

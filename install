@@ -1,26 +1,37 @@
 #!/bin/sh
 
-\rm -rf ~/.vimrc
-\rm -rf ~/.vimrc.bundles
-\rm -rf ~/.vimrc.local
-\rm -rf ~/.bashrc
-\rm -rf ~/.tmux.conf
-\rm -rf ~/.machine
-\rm -rf ~/.go
+home_path=${HOME}
 
-ln -s ~/etc/vimrc ~/.vimrc
-ln -s ~/etc/vimrc.bundles ~/.vimrc.bundles
-ln -s ~/etc/vimrc.local ~/.vimrc.local
-ln -s ~/etc/bashrc ~/.bashrc
-ln -s ~/etc/tmux.conf ~/.tmux.conf
-ln -s ~/etc/machine ~/.machine
-ln -s ~/etc/go ~/.go
+. $home_path/etc/bashrc
 
-mkdir -p ~/.vim/backup
-mkdir -p ~/.trash
-mkdir -p ~/.vim/bundle
+echo "source"
 
-cd ~
-source .bashrc
+\rm -rf $home_path/.vimrc
+\rm -rf $home_path/.vimrc.bundles
+\rm -rf $home_path/.vimrc.local
+\rm -rf $home_path/.bashrc
+\rm -rf $home_path/.tmux.conf
+\rm -rf $home_path/.machine
+\rm -rf $home_path/.go
+\rm -rf $home_path/.vim/bundle/Vundle.vim
 
-git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle
+# vim
+ln -s $home_path/etc/vimrc $home_path/.vimrc
+ln -s $home_path/etc/conf/vimrc.bundles $home_path/.vimrc.bundles
+ln -s $home_path/etc/conf/vimrc.local $home_path/.vimrc.local
+
+# bash
+ln -s $home_path/etc/bashrc $home_path/.bashrc
+ln -s $home_path/etc/conf/tmux.conf $home_path/.tmux.conf
+ln -s $home_path/etc/conf/machine $home_path/.machine
+ln -s $home_path/etc/bin/go $home_path/.go
+
+# mkdir
+mkdir -p $home_path/.vim/backup
+mkdir -p $home_path/.vim/bundle
+mkdir -p $home_path/.trash
+
+cd $home_path
+
+git clone https://github.com/VundleVim/Vundle.vim.git $home_path/.vim/bundle/Vundle.vim
+

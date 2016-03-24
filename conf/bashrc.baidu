@@ -1,9 +1,13 @@
 # bashrc for baidu machine
 
+alias dbl00="ssh map@dbl-map-dataop00.dbl01.baidu.com"
+alias dbl01="ssh map@dbl-map-dataop01.dbl01.baidu.com"
+
 alias go="${HOME}/.go "
 alias hfs="${HADOOP_HOME}/bin/hadoop fs -conf ${HADOOP_HOME}/conf/hadoop-site-dataop.xml "
 alias hjob="${HADOOP_HOME}/bin/hadoop job -conf ${HADOOP_HOME}/conf/hadoop-site-dataop.xml "
 alias cddm="cd /home/users/yangshuang/lib/app/search/linkmining"
+alias cdtr="cd /home/users/yangshuang/lib/app/search/trajectory"
 
 export SHLIB_HOME="${HOME}/charles/lib/shlib"
 export HADOOP_HOME="${HOME}/hadoop-client/hadoop"

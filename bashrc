@@ -1,21 +1,47 @@
 #!/bin/sh
 
-domain=$(hostname | awk -F '.' '{print $(NF - 1)}')
-if [ ${domain} == "baidu" ]; then
-    source ${HOME}/etc/bashrc.baidu
-fi
+# configure
+home_path=${HOME}
 
-system=$(uname)
-if [ ${system} = "Darwin" ]; then
-    source ${HOME}/etc/bashrc.mac
-fi
+# Determine the machine environment and load conf
+recognize_machine() {
+    system=$(uname)
+    domain=$(hostname | awk -F '.' '{print $(NF - 1)}')
+    if [ ${system} = "Darwin" ]; then
+        # macbook
+        source ${home_path}/etc/conf/bashrc.mac
+    elif [ ${system} = "Linux" ] && [ ${domain} = "baidu" ]; then
+        # baidu machine
+        source ${home_path}/etc/conf/bashrc.baidu
+        source /etc/bashrc
+    fi
+}
 
-if [ -f /etc/bashrc ]; then
-    source /etc/bashrc
-fi
+# set PS1
+make_ps() {
+    add=$(hostname | awk -F '-' '{print $1}')
+    PS1="\[\033[01;31m\]\u\[\033[01;31m\]@\[\033[01;33m\]\h.$add \[\033[01;36m\]\w\[\033[00m\]\$ "
+}
 
-if [ -f ${HOME}/.machine ]; then
-    source ${HOME}/.machine
+# change rm to mv
+trash() {
+    mv $@ ~/.trash/
+}
+
+# nohup job
+hup() {
+    nohup $@ >> ../log/nohup 2>&1 &
+}
+
+# show the machine name and path
+show_name() {
+    echo -n ${USER}"@"$(uname -a | awk '{print $2}')":"$(pwd)
+    echo
+}
+
+# load param
+if [ -f ${home_path}/.machine ]; then
+    source ${home_path}/.machine
 fi
 
 if [ ! -d "HOME_LIB" ]; then
@@ -35,25 +61,7 @@ if [ ! -d "HADOOP_HOME" ]; then
 fi
 
 
-make_ps() {
-    add=$(hostname | awk -F '-' '{print $1}')
-    PS1="\[\033[01;31m\]\u\[\033[01;31m\]@\[\033[01;33m\]\h.$add \[\033[0;31m\]\W\[\033[37;36m\]\$ \[\033[1;37m\]"
-}
-
-trash() {
-    mv $@ ~/.trash/
-}
-
-hup() {
-    nohup $@ >> ../log/nohup 2>&1 &
-}
-
-show_name() {
-    echo -n $(users | awk '{print $1}')"@"$(uname -a | awk '{print $2}')":"$(pwd)
-    echo
-}
-
-
+# alias
 alias rm='trash'
 alias df='df -h'
 alias du='du -h --max-depth=1'
@@ -69,5 +77,6 @@ alias tree='tree -L 1'
 alias astyle='astyle -j -W3 -k3 -f --delete-empty-lines --unpad-paren --pad-header --pad-oper -Y --indent=spaces=4 -A8 -S'
 alias name='show_name'
 
-
+# function
 make_ps
+recognize_machine
