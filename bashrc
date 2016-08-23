@@ -17,27 +17,37 @@ recognize_machine() {
     fi
 }
 
-# set PS1
+#
+# function
+#
+
 make_ps() {
     add=$(hostname | awk -F '-' '{print $1}')
     PS1="\[\033[01;31m\]\u\[\033[01;31m\]@\[\033[01;33m\]\h.$add \[\033[01;36m\]\w\[\033[00m\]\$ "
 }
 
-# change rm to mv
 trash() {
     mv $@ ~/.trash/
 }
 
-# nohup job
 hup() {
-    nohup $@ >> ../log/nohup 2>&1 &
+    nohup $@ >> ./log/nohup 2>&1 &
 }
 
-# show the machine name and path
 show_name() {
     echo -n ${USER}"@"$(uname -a | awk '{print $2}')":"$(pwd)
     echo
 }
+
+sum() {
+    if [ $# -eq 1 ]; then
+        cat $1 | awk 'BEGIN{sum=0}{sum+=$1}END{print sum}'
+    else
+        cat $1 | awk -v a=$2 'BEGIN{sum=0}{sum+=$a}END{print sum}'
+    fi
+}
+
+
 
 # load param
 if [ -f ${home_path}/.machine ]; then

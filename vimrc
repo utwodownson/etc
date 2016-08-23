@@ -181,3 +181,10 @@ if filereadable(expand("~/.vimrc.local"))
     " noremap! jj <ESC>
     source ~/.vimrc.local
 endif
+
+map <F5> :call CompileRunGplusplus()<CR>
+func! CompileRunGplusplus()
+     exec "w"
+     exec "!g++ % -o %<"
+     exec "! ./%<"
+endfunc

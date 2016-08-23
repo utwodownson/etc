@@ -8,6 +8,7 @@ alias hfs="${HADOOP_HOME}/bin/hadoop fs -conf ${HADOOP_HOME}/conf/hadoop-site-da
 alias hjob="${HADOOP_HOME}/bin/hadoop job -conf ${HADOOP_HOME}/conf/hadoop-site-dataop.xml "
 alias cddm="cd /home/users/yangshuang/lib/app/search/linkmining"
 alias cdtr="cd /home/users/yangshuang/lib/app/search/trajectory"
+alias cdnr="cd /home/users/yangshuang/lib/app/search/maplink/newroad"
 
 export SHLIB_HOME="${HOME}/charles/lib/shlib"
 export HADOOP_HOME="${HOME}/hadoop-client/hadoop"
