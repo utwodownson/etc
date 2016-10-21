@@ -1,10 +1,11 @@
 #!/bin/sh
 
-# configure
+# home path
 home_path=${HOME}
 
-# Determine the machine environment and load conf
+########################### FUNCTION ###############################################################
 recognize_machine() {
+    # Determine the machine environment and load conf
     system=$(uname)
     domain=$(hostname | awk -F '.' '{print $(NF - 1)}')
     if [ ${system} = "Darwin" ]; then
@@ -17,20 +18,19 @@ recognize_machine() {
     fi
 }
 
-#
-# function
-#
-
 make_ps() {
-    add=$(hostname | awk -F '-' '{print $1}')
-    PS1="\[\033[00;33m\]\u\[\033[00;32m\]@\[\033[00;31m\]\h.$add \[\033[00;31m\]\w\[\033[00m\]\$ "
+    # PS1
+    add=$(hostname | awk -F '.' '{print $1}' | awk -F '-' '{print $NF}')
+    PS1="\[\033[00;33m\]\u\[\033[00;31m\]@\[\033[00;31m\]${add} \[\033[00;36m\]\w\[\033[00m\]\$ "
 }
 
 trash() {
+    # del to the ./trash
     mv $@ ~/.trash/
 }
 
 hup() {
+    # shot nohup and log in ./
     nohup $@ >> ./log/nohup 2>&1 &
 }
 
@@ -46,10 +46,9 @@ sum() {
         cat $1 | awk -v a=$2 'BEGIN{sum=0}{sum+=$a}END{print sum}'
     fi
 }
+####################################################################################################
 
 
-
-# load param
 if [ -f ${home_path}/.machine ]; then
     source ${home_path}/.machine
 fi
@@ -71,7 +70,6 @@ if [ ! -d "HADOOP_HOME" ]; then
 fi
 
 
-# alias
 alias rm='trash'
 alias df='df -h'
 alias du='du -h --max-depth=1'
@@ -87,6 +85,6 @@ alias tree='tree -L 1'
 alias astyle='astyle -j -W3 -k3 -f --delete-empty-lines --unpad-paren --pad-header --pad-oper -Y --indent=spaces=4 -A8 -S'
 alias name='show_name'
 
-# function
+
 make_ps
 recognize_machine

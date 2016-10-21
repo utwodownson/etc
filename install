@@ -34,4 +34,3 @@ mkdir -p $home_path/.trash
 cd $home_path
 
 git clone https://github.com/VundleVim/Vundle.vim.git $home_path/.vim/bundle/Vundle.vim
-
