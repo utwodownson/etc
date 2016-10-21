@@ -2,7 +2,7 @@
 
 home_path=${HOME}
 
-. $home_path/etc/bashrc
+. $home_path/etc/conf/bashrc
 
 echo "source"
 
@@ -16,12 +16,12 @@ echo "source"
 \rm -rf $home_path/.vim/bundle/Vundle.vim
 
 # vim
-ln -s $home_path/etc/vimrc $home_path/.vimrc
+ln -s $home_path/etc/conf/vimrc $home_path/.vimrc
 ln -s $home_path/etc/conf/vimrc.bundles $home_path/.vimrc.bundles
 ln -s $home_path/etc/conf/vimrc.local $home_path/.vimrc.local
 
 # bash
-ln -s $home_path/etc/bashrc $home_path/.bashrc
+ln -s $home_path/etc/conf/bashrc $home_path/.bashrc
 ln -s $home_path/etc/conf/tmux.conf $home_path/.tmux.conf
 ln -s $home_path/etc/conf/machine $home_path/.machine
 ln -s $home_path/etc/bin/go $home_path/.go
